@@ -711,12 +711,60 @@ body {
         </div>
       </div>
 
-      <!-- Familias detalle -->
+      <!-- Ventas por turno -->
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">🏪 Ventas por Categoría</div>
+          <div class="panel-title">⏰ Ventas por Turno — Top 5 productos</div>
+          <span class="panel-badge">semana 02/03 — 08/03/2026</span>
         </div>
-        <div class="familia-grid" id="familia-grid"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border)">
+
+          <!-- MAÑANA -->
+          <div style="border-right:1px solid var(--border)">
+            <div style="background:#fffbf0;padding:14px 18px;border-bottom:1px solid var(--border)">
+              <div style="font-size:18px;margin-bottom:6px">☀️ Turno Mañana</div>
+              <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">07:00 — 15:00hs</div>
+              <div style="display:flex;gap:14px;flex-wrap:wrap">
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent)">$2.16M</div><div style="font-size:10px;color:var(--muted)">venta</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);opacity:0.7">28.2%</div><div style="font-size:10px;color:var(--muted)">del total</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--blue)">506</div><div style="font-size:10px;color:var(--muted)">tickets</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--orange)">$4.267</div><div style="font-size:10px;color:var(--muted)">ticket prom</div></div>
+              </div>
+            </div>
+            <div id="turno-manana"></div>
+          </div>
+
+          <!-- TARDE -->
+          <div style="border-right:1px solid var(--border)">
+            <div style="background:#f0f8ff;padding:14px 18px;border-bottom:1px solid var(--border)">
+              <div style="font-size:18px;margin-bottom:6px">🌅 Turno Tarde</div>
+              <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">15:00 — 23:00hs</div>
+              <div style="display:flex;gap:14px;flex-wrap:wrap">
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent)">$4.10M</div><div style="font-size:10px;color:var(--muted)">venta</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);opacity:0.7">53.5%</div><div style="font-size:10px;color:var(--muted)">del total</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--blue)">740</div><div style="font-size:10px;color:var(--muted)">tickets</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--orange)">$5.535</div><div style="font-size:10px;color:var(--muted)">ticket prom</div></div>
+              </div>
+            </div>
+            <div id="turno-tarde"></div>
+          </div>
+
+          <!-- NOCHE -->
+          <div>
+            <div style="background:#f5f0ff;padding:14px 18px;border-bottom:1px solid var(--border)">
+              <div style="font-size:18px;margin-bottom:6px">🌙 Turno Noche</div>
+              <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">23:00 — 07:00hs</div>
+              <div style="display:flex;gap:14px;flex-wrap:wrap">
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent)">$1.40M</div><div style="font-size:10px;color:var(--muted)">venta</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);opacity:0.7">18.2%</div><div style="font-size:10px;color:var(--muted)">del total</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--blue)">290</div><div style="font-size:10px;color:var(--muted)">tickets</div></div>
+                <div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--orange)">$4.815</div><div style="font-size:10px;color:var(--muted)">ticket prom</div></div>
+              </div>
+            </div>
+            <div id="turno-noche"></div>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -1232,15 +1280,50 @@ function renderTopProds() {
     `).join('');
 }
 
-function renderFamiliaGrid() {
-  document.getElementById('familia-grid').innerHTML =
-    semanaActual.familias.map(f => `
-      <div class="familia-chip">
-        <div class="fam-nombre">${f.nombre}</div>
-        <div class="fam-valor">${fmt(f.venta)}</div>
-        <div class="fam-cant">${f.cant} unidades</div>
-      </div>
-    `).join('');
+function renderTurnos() {
+  const turnos = {
+    manana: [
+      { nombre: 'CARAMELOS ARCOR RELLENOS',          cant: 72, venta: 7200,   familia: 'GOLOSINAS' },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', cant: 29, venta: 81200,  familia: 'GASEOSAS' },
+      { nombre: 'CARAMELO BUTTER TOFFEES ARCOR',     cant: 20, venta: 2000,   familia: 'GOLOSINAS' },
+      { nombre: 'CHUPETIN MR POP EVOLUTION',         cant: 18, venta: 5400,   familia: 'GOLOSINAS' },
+      { nombre: 'CHICLE BAZOOKA VARIEDAD',           cant: 18, venta: 1800,   familia: 'GOLOSINAS' },
+    ],
+    tarde: [
+      { nombre: 'CARAMELO MASTICABLE ARCOR',         cant: 44, venta: 2200,   familia: 'GOLOSINAS' },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', cant: 31, venta: 86800,  familia: 'GASEOSAS' },
+      { nombre: 'PAN PANIFICADOS MARTIN 500G',       cant: 24, venta: 36000,  familia: 'PANADERIA' },
+      { nombre: 'HUEVOS 1U',                         cant: 22, venta: 6600,   familia: 'FIAMBRES Y LACTEOS' },
+      { nombre: 'SANDWICH DE MIGA LAUTARO',          cant: 21, venta: 74700,  familia: 'PANADERIA' },
+    ],
+    noche: [
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', cant: 22, venta: 67760,  familia: 'GASEOSAS' },
+      { nombre: 'CERVEZA HEINEKEN 1LT',              cant: 14, venta: 100100, familia: 'CERVEZAS' },
+      { nombre: 'HUEVOS 1U',                         cant: 11, venta: 3570,   familia: 'FIAMBRES Y LACTEOS' },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1L',   cant: 8,  venta: 19360,  familia: 'GASEOSAS' },
+      { nombre: 'PAN PANIFICADOS MARTIN 500G',       cant: 8,  venta: 13200,  familia: 'PANADERIA' },
+    ],
+  };
+
+  ['manana','tarde','noche'].forEach(t => {
+    const max = turnos[t][0].cant;
+    document.getElementById('turno-' + t).innerHTML =
+      turnos[t].map((p, i) => `
+        <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--border)">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);width:22px;text-align:center">${i+1}</div>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;line-height:1.3">${p.nombre}</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:1px">${p.familia}</div>
+            <div style="background:var(--border);border-radius:3px;height:4px;margin-top:5px;overflow:hidden">
+              <div style="background:var(--accent);height:100%;width:${(p.cant/max*100).toFixed(0)}%;border-radius:3px"></div>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--accent)">${p.cant}u</div>
+            <div style="font-size:10px;color:var(--muted)">${fmt(p.venta)}</div>
+          </div>
+        </div>`).join('');
+  });
 }
 
 function renderChartFamilias() {
@@ -1534,7 +1617,7 @@ function toggleSemana(idx) {
 // ══════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
   renderTopProds();
-  renderFamiliaGrid();
+  renderTurnos();
   renderChartFamilias();
   renderChartEvolucion();
   renderStockValorizado();
