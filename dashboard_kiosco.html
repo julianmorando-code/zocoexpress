@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiosco 24hs — Panel de Promociones</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f3ee;
+  --surface: #ffffff;
+  --surface2: #fdf9f5;
+  --border: #e8e0d5;
+  --text: #1a1208;
+  --muted: #8a7b6a;
+  --accent: #e8430a;
+  --accent2: #f5a623;
+  --green: #2d7a3a;
+  --blue: #1a4f8a;
+  --purple: #6b3fa0;
+  --red: #c0392b;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  background: var(--text);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 42px; height: 42px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+
+.logo h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.logo span { color: var(--accent2); }
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.semana-badge {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sucursal-badge {
+  background: var(--accent);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* TABS */
+.tabs-bar {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  padding: 0 32px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 16px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* MAIN */
+.main { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+
+.section { display: none; }
+.section.active { display: block; }
+
+/* KPI GRID */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.kpi-card.red::before { background: var(--accent); }
+.kpi-card.orange::before { background: var(--accent2); }
+.kpi-card.green::before { background: var(--green); }
+.kpi-card.blue::before { background: var(--blue); }
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.kpi-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.kpi-card.red .kpi-value { color: var(--accent); }
+.kpi-card.orange .kpi-value { color: var(--accent2); }
+.kpi-card.green .kpi-value { color: var(--green); }
+.kpi-card.blue .kpi-value { color: var(--blue); }
+
+.kpi-sub { font-size: 12px; color: var(--muted); }
+
+/* SECTION TITLE */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.count-badge {
+  background: var(--text);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* PROMO CARD */
+.promo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.4s ease both;
+}
+
+.promo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.promo-card-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.promo-tipo {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.tipo-vigente { background: #d5f5e3; color: #1e8449; }
+.tipo-oferta  { background: #fadbd8; color: #c0392b; }
+.tipo-combo   { background: #fdebd0; color: #e67e22; }
+.tipo-3x2     { background: #d6eaf8; color: #1a5276; }
+
+.promo-unidades {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.promo-card-body { padding: 4px 18px 18px; }
+
+.promo-nombre {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.promo-precios {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.precio-normal {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.precio-oferta {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.ahorro-badge {
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin-left: auto;
+}
+
+.ahorro-badge.green { background: var(--green); }
+.ahorro-badge.blue  { background: var(--blue); }
+.ahorro-badge.orange { background: var(--accent2); }
+
+.promo-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.promo-familia {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.promo-semanas {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.sem-urgente { background: #fadbd8; color: #c0392b; }
+.sem-medio   { background: #fdebd0; color: #e67e22; }
+.sem-ok      { background: #d5f5e3; color: #1e8449; }
+
+/* COMBO CARD */
+.combo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.4s ease both;
+}
+
+.combo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.combo-header {
+  background: var(--accent2);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.combo-nombre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.combo-desc-badge {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+
+.combo-body { padding: 16px 18px; }
+
+.combo-productos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.combo-prod {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.combo-prod-nombre { font-size: 12px; font-weight: 600; color: var(--text); flex: 1; }
+.combo-prod-precio { font-size: 13px; font-weight: 700; color: var(--muted); }
+
+.combo-plus {
+  text-align: center;
+  font-size: 18px;
+  color: var(--accent2);
+  margin: -2px 0;
+}
+
+.combo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.combo-total-label { font-size: 12px; color: var(--muted); }
+
+.combo-precio-final {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--green);
+  line-height: 1;
+}
+
+.combo-ahorro {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* TABLA */
+.tabla-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.tabla-header-row {
+  display: grid;
+  padding: 12px 20px;
+  background: var(--text);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tabla-row {
+  display: grid;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.tabla-row:last-child { border-bottom: none; }
+.tabla-row:hover { background: var(--surface2); }
+
+.tabla-3x2 .tabla-header-row,
+.tabla-3x2 .tabla-row {
+  grid-template-columns: 3fr 1fr 1.2fr 1.2fr 1.2fr 1fr;
+}
+
+/* VIGENTES */
+.vigente-card {
+  background: var(--surface);
+  border: 2px solid #d5f5e3;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.4s ease both;
+}
+
+.vigente-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(45,122,58,0.15);
+}
+
+.vigente-header {
+  background: var(--green);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vigente-nombre {
+  font-weight: 700;
+  color: white;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.vigente-ventas {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.vigente-body { padding: 14px 18px; }
+
+.vigente-precio {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.vigente-venta-total {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.vigente-venta-total strong { color: var(--green); }
+
+/* RECOMENDACIONES */
+.reco-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.reco-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  animation: fadeUp 0.4s ease both;
+}
+
+.reco-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.reco-icon.red    { background: #fadbd8; }
+.reco-icon.orange { background: #fdebd0; }
+.reco-icon.green  { background: #d5f5e3; }
+.reco-icon.blue   { background: #d6eaf8; }
+.reco-icon.purple { background: #e8daef; }
+
+.reco-tipo {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.reco-tipo.red    { color: var(--red); }
+.reco-tipo.orange { color: #e67e22; }
+.reco-tipo.green  { color: var(--green); }
+.reco-tipo.blue   { color: var(--blue); }
+.reco-tipo.purple { color: var(--purple); }
+
+.reco-texto { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cards-grid .promo-card:nth-child(1) { animation-delay: 0.05s; }
+.cards-grid .promo-card:nth-child(2) { animation-delay: 0.10s; }
+.cards-grid .promo-card:nth-child(3) { animation-delay: 0.15s; }
+.cards-grid .promo-card:nth-child(4) { animation-delay: 0.20s; }
+.cards-grid .promo-card:nth-child(5) { animation-delay: 0.25s; }
+.cards-grid .promo-card:nth-child(6) { animation-delay: 0.30s; }
+
+/* FOOTER */
+footer {
+  background: var(--text);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  margin-top: 48px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .main { padding: 20px 16px; }
+  .reco-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  header { padding: 0 16px; }
+  .tabs-bar { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">🏪</div>
+    <h1>KIOSCO <span>24HS</span></h1>
+  </div>
+  <div class="header-meta">
+    <div class="semana-badge">Semana 02/03 — 08/03/2026</div>
+    <div class="sucursal-badge">Suc. Uruguay · PV4</div>
+  </div>
+</header>
+
+<div class="tabs-bar">
+  <div class="tab active" onclick="showTab('resumen')">📊 Resumen</div>
+  <div class="tab" onclick="showTab('vigentes')">✅ Promos Vigentes</div>
+  <div class="tab" onclick="showTab('liquidacion')">🔥 Liquidación</div>
+  <div class="tab" onclick="showTab('combos')">🎁 Combos</div>
+  <div class="tab" onclick="showTab('3x2')">3️⃣ Llevá 3 Pagá 2</div>
+  <div class="tab" onclick="showTab('recomendaciones')">💡 Recomendaciones</div>
+</div>
+
+<div class="main">
+
+  <!-- ══ RESUMEN ══ -->
+  <div class="section active" id="tab-resumen">
+
+    <div class="kpi-grid">
+      <div class="kpi-card red">
+        <div class="kpi-label">Promos Vigentes</div>
+        <div class="kpi-value">16</div>
+        <div class="kpi-sub">productos PROMO activos</div>
+      </div>
+      <div class="kpi-card orange">
+        <div class="kpi-label">Venta en Promos</div>
+        <div class="kpi-value">$695K</div>
+        <div class="kpi-sub">esta semana en PROMO</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Candidatos Oferta</div>
+        <div class="kpi-value">25</div>
+        <div class="kpi-sub">productos para liquidar</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-label">Capital Inmovilizado</div>
+        <div class="kpi-value">$1.2M</div>
+        <div class="kpi-sub">en stock sin rotar</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h2>Top Promos de la Semana</h2>
+    </div>
+
+    <div class="cards-grid">
+      <div class="vigente-card">
+        <div class="vigente-header">
+          <div class="vigente-nombre">PROMO AMSTEL LATA SIXPACK</div>
+          <div class="vigente-ventas">11u vendidas</div>
+        </div>
+        <div class="vigente-body">
+          <div class="vigente-precio">$10.450</div>
+          <div class="vigente-venta-total">Recaudó <strong>$105.450</strong> esta semana</div>
+        </div>
+      </div>
+      <div class="vigente-card">
+        <div class="vigente-header">
+          <div class="vigente-nombre">PROMO BRAHMA LITRO 2X$</div>
+          <div class="vigente-ventas">14u vendidas</div>
+        </div>
+        <div class="vigente-body">
+          <div class="vigente-precio">$7.000</div>
+          <div class="vigente-venta-total">Recaudó <strong>$99.400</strong> esta semana</div>
+        </div>
+      </div>
+      <div class="vigente-card">
+        <div class="vigente-header">
+          <div class="vigente-nombre">PROMO 1890 LITRO 2X$</div>
+          <div class="vigente-ventas">14u vendidas</div>
+        </div>
+        <div class="vigente-body">
+          <div class="vigente-precio">$7.150</div>
+          <div class="vigente-venta-total">Recaudó <strong>$92.950</strong> esta semana</div>
+        </div>
+      </div>
+      <div class="vigente-card">
+        <div class="vigente-header">
+          <div class="vigente-nombre">PROMO FERNET BRANCA + COCA COLA 2.25L</div>
+          <div class="vigente-ventas">4u vendidas</div>
+        </div>
+        <div class="vigente-body">
+          <div class="vigente-precio">$18.500</div>
+          <div class="vigente-venta-total">Recaudó <strong>$78.500</strong> esta semana</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h2>Alertas de Stock</h2>
+    </div>
+
+    <div class="reco-grid">
+      <div class="reco-card">
+        <div class="reco-icon red">🔴</div>
+        <div>
+          <div class="reco-tipo red">URGENTE — Mayor capital inmovilizado</div>
+          <div class="reco-texto"><strong>Vino Viñas de Balbo 1.125ml</strong> tiene 131 unidades sin venderse. Capital inmovilizado: ~$250.000. Activar PROMO o combo con quesos.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon red">🍺</div>
+        <div>
+          <div class="reco-tipo red">URGENTE — Cervezas sin rotar</div>
+          <div class="reco-texto"><strong>Cerveza Brahma 1L (48u)</strong> y <strong>Stella Artois 330ml (42u)</strong> no tuvieron venta individual esta semana. Crear PROMO 2x$.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon orange">📦</div>
+        <div>
+          <div class="reco-tipo orange">ATENCIÓN — Baja rotación</div>
+          <div class="reco-texto"><strong>Heineken Lata (55u)</strong> y <strong>Quilmes Lata (75u)</strong> tienen más de 50 semanas de stock. Precio actual no está siendo competitivo.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon green">💡</div>
+        <div>
+          <div class="reco-tipo green">OPORTUNIDAD</div>
+          <div class="reco-texto">Las <strong>Promos de cervezas</strong> son tu mayor generador de ventas (46% del total). Mantener y ampliar la línea de combos de bebidas.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ PROMOS VIGENTES ══ -->
+  <div class="section" id="tab-vigentes">
+    <div class="section-title">
+      <h2>Promos Vigentes</h2>
+      <span class="count-badge">16 activas</span>
+    </div>
+    <div class="cards-grid" id="vigentes-grid">
+      <!-- generado por JS -->
+    </div>
+  </div>
+
+  <!-- ══ LIQUIDACIÓN ══ -->
+  <div class="section" id="tab-liquidacion">
+    <div class="section-title">
+      <h2>Ofertas de Liquidación</h2>
+      <span class="count-badge">25 productos</span>
+    </div>
+    <div class="cards-grid" id="liquidacion-grid">
+      <!-- generado por JS -->
+    </div>
+  </div>
+
+  <!-- ══ COMBOS ══ -->
+  <div class="section" id="tab-combos">
+    <div class="section-title">
+      <h2>Combos Sugeridos</h2>
+      <span class="count-badge">6 combos</span>
+    </div>
+    <div class="cards-grid" id="combos-grid">
+      <!-- generado por JS -->
+    </div>
+  </div>
+
+  <!-- ══ 3x2 ══ -->
+  <div class="section" id="tab-3x2">
+    <div class="section-title">
+      <h2>Llevá 3 Pagá 2</h2>
+      <span class="count-badge">20 productos</span>
+    </div>
+    <div class="tabla-container tabla-3x2">
+      <div class="tabla-header-row">
+        <span>Producto</span>
+        <span>Stock</span>
+        <span>Precio Unit.</span>
+        <span>Precio Efectivo</span>
+        <span>Margen Orig.</span>
+        <span>Margen Efect.</span>
+      </div>
+      <div id="3x2-rows"></div>
+    </div>
+  </div>
+
+  <!-- ══ RECOMENDACIONES ══ -->
+  <div class="section" id="tab-recomendaciones">
+    <div class="section-title">
+      <h2>Recomendaciones de la Semana</h2>
+    </div>
+    <div class="reco-grid">
+      <div class="reco-card">
+        <div class="reco-icon red">🔴</div>
+        <div>
+          <div class="reco-tipo red">URGENTE — Liquidar esta semana</div>
+          <div class="reco-texto">Vino Viñas de Balbo 1.125ml (131u) es el producto con mayor capital inmovilizado. Precio normal $3.000. Sugerir a $2.200 o armar PROMO 2x$4.000. También activar PROMO para Brahma 1L y Stella 330ml que no rotaron.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon orange">🟠</div>
+        <div>
+          <div class="reco-tipo orange">IMPORTANTE — Revisar precios</div>
+          <div class="reco-texto">Heineken Lata 473ml (55u, 55 semanas de stock) y Amstel Lager (69u, 69 semanas). Están en $2.200 y $2.200 respectivamente pero no rotan individualmente. Solo se venden en PROMO. Considerar bajar precio unitario.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon green">🟢</div>
+        <div>
+          <div class="reco-tipo green">OPORTUNIDAD — Ampliar combos</div>
+          <div class="reco-texto">Combo Desayuno (Lácteos + Galletitas) no está en tu oferta actual y es poco común en kioscos. Con Salchichas Friar + Galletita 9 de Oro a $3.150 podés diferenciarte de la competencia en el turno mañana.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon blue">💙</div>
+        <div>
+          <div class="reco-tipo blue">ESTRATEGIA — Promos que más venden</div>
+          <div class="reco-texto">Tu top 3 de la semana fue Amstel Sixpack ($105K), Brahma Litro 2x ($99K) y 1890 Litro 2x ($92K). Las PROMO 2x$ de litros de cerveza son tu producto estrella. Mantener vigentes y evaluar agregar más marcas.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon purple">💜</div>
+        <div>
+          <div class="reco-tipo purple">DIFERENCIACIÓN — Turno noche</div>
+          <div class="reco-texto">Combo Birra (Cerveza + Snack) y Combo Fernet pueden potenciarse en horario nocturno con cartelería específica. El turno noche es tu ventaja competitiva como kiosco 24hs.</div>
+        </div>
+      </div>
+      <div class="reco-card">
+        <div class="reco-icon orange">📊</div>
+        <div>
+          <div class="reco-tipo orange">PRÓXIMA SEMANA</div>
+          <div class="reco-texto">Subir nuevo stock y ventas para actualizar este dashboard. Idealmente cada lunes con el reporte de la semana anterior. Con más semanas de datos se pueden detectar tendencias y estacionalidad.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Kiosco 24hs — Panel de Supervisores  |  Solo lectura  |  Actualizado semanalmente
+</footer>
+
+<script>
+// ── DATOS ────────────────────────────────────────────────
+const promos_vigentes = [
+  { nombre: 'PROMO AMSTEL LATA SIXPACK', precio: 10450, cant: 11, venta: 105450 },
+  { nombre: 'PROMO BRAHMA LITRO 2X$', precio: 7000, cant: 14, venta: 99400 },
+  { nombre: 'PROMO 1890 LITRO 2X$', precio: 7150, cant: 14, venta: 92950 },
+  { nombre: 'PROMO HEINEKEN LATA 473ML 2X$', precio: 6500, cant: 14, venta: 89580 },
+  { nombre: 'PROMO FERNET BRANCA 750ML + COCA COLA 2.25ML', precio: 18500, cant: 4, venta: 78500 },
+  { nombre: 'PROMO 1890 LATA 473ML 2X$', precio: 3500, cant: 22, venta: 67700 },
+  { nombre: 'PROMO BALBO 1.125 + SECCO POMELO 3L', precio: 4000, cant: 10, venta: 40400 },
+  { nombre: 'PROMO CORONA PORRON 330ML 2X$', precio: 6200, cant: 5, venta: 31000 },
+  { nombre: 'PROMO QUILMES CLASICA LATA 473ML 2X$', precio: 4000, cant: 7, venta: 28400 },
+  { nombre: 'PROMO HEINEKEN LATA 473ML SIX PACK', precio: 16500, cant: 1, venta: 16500 },
+  { nombre: 'PROMO PROFUGO FRUTOS ROJOS 750ML X 2U', precio: 5200, cant: 3, venta: 15600 },
+  { nombre: 'PROMO VIÑAS DE BALBO 1.125ML 2X$', precio: 4500, cant: 2, venta: 9000 },
+  { nombre: 'PROMO AMSTEL LATA 2X$', precio: 3960, cant: 2, venta: 7560 },
+  { nombre: 'PROMO STELLA PORRON 2X$', precio: 6050, cant: 1, venta: 6050 },
+  { nombre: 'PROMO PROFUGO 750ML + SECCO POMELO 3L', precio: 4950, cant: 1, venta: 4950 },
+  { nombre: 'PROMO CEPITA FRESH NARANJA 1.5LTS 2X$', precio: 2500, cant: 1, venta: 2500 },
+];
+
+const liquidacion = [
+  { nombre: 'VINO VIÑAS DE BALBO 1.125ML', familia: 'VINOS', stock: 131, precio_normal: 3000, precio_oferta: 2200, desc: 27, semanas: 99 },
+  { nombre: 'CERVEZA BRAHMA 1LT', familia: 'CERVEZAS', stock: 48, precio_normal: 4000, precio_oferta: 3300, desc: 18, semanas: 99 },
+  { nombre: 'CERVEZA PORRON STELLA ARTOIS 330ML', familia: 'CERVEZAS', stock: 42, precio_normal: 3000, precio_oferta: 2450, desc: 18, semanas: 99 },
+  { nombre: 'CERVEZA PORRON CORONA 330ML', familia: 'CERVEZAS', stock: 29, precio_normal: 3600, precio_oferta: 2760, desc: 23, semanas: 99 },
+  { nombre: 'ACEITE GIRASOL EL PRIMORDIAL 900ML', familia: 'ALMACEN', stock: 23, precio_normal: 3000, precio_oferta: 2440, desc: 19, semanas: 99 },
+  { nombre: 'VINO NICASIA RED BLEND MALBEC 750ML', familia: 'VINOS', stock: 36, precio_normal: 9200, precio_oferta: 7300, desc: 21, semanas: 99 },
+  { nombre: 'SELTON MATA MOSCAS Y MOSQUITOS 360CC', familia: 'LIMPIEZA', stock: 13, precio_normal: 6100, precio_oferta: 3900, desc: 36, semanas: 99 },
+  { nombre: 'ESPUMANTE CONEJO VERDE BRUT', familia: 'BEBIDAS ALCOHOLICAS', stock: 8, precio_normal: 11200, precio_oferta: 7130, desc: 36, semanas: 99 },
+  { nombre: 'VODKA SERNOVA 700ML', familia: 'BEBIDAS ALCOHOLICAS', stock: 7, precio_normal: 10000, precio_oferta: 7180, desc: 28, semanas: 99 },
+  { nombre: 'GALLETITA SURTIDA BAGLEY 400GR', familia: 'GALLETITAS', stock: 49, precio_normal: 3900, precio_oferta: 2430, desc: 38, semanas: 24 },
+  { nombre: 'GALLETITA SURTIDA DIVERSION 400GR', familia: 'GALLETITAS', stock: 50, precio_normal: 3300, precio_oferta: 2050, desc: 38, semanas: 17 },
+  { nombre: 'CERVEZA LATA HEINEKEN 473ML', familia: 'CERVEZAS', stock: 55, precio_normal: 3600, precio_oferta: 2630, desc: 27, semanas: 55 },
+  { nombre: 'CERVEZA LATA QUILMES 473ML', familia: 'CERVEZAS', stock: 75, precio_normal: 2300, precio_oferta: 1700, desc: 26, semanas: 38 },
+  { nombre: 'CERVEZA LATA AMSTEL LAGER 473ML', familia: 'CERVEZAS', stock: 69, precio_normal: 2200, precio_oferta: 1610, desc: 27, semanas: 69 },
+  { nombre: 'SECCO POMELO 3L', familia: 'GASEOSAS', stock: 58, precio_normal: 2700, precio_oferta: 1970, desc: 27, semanas: 7 },
+  { nombre: 'CERVEZA 1890 1L', familia: 'CERVEZAS', stock: 36, precio_normal: 4200, precio_oferta: 2480, desc: 41, semanas: 6 },
+  { nombre: 'AGUA SABORIZADA CEPITA FRESH NARANJA 1.5L', familia: 'AGUAS SABORIZADAS', stock: 51, precio_normal: 1800, precio_oferta: 1570, desc: 13, semanas: 26 },
+  { nombre: 'FERNET BRANCA 750ML', familia: 'BEBIDAS ALCOHOLICAS', stock: 12, precio_normal: 19000, precio_oferta: 15960, desc: 16, semanas: 12 },
+  { nombre: 'CERVEZA CORONA 710ML', familia: 'CERVEZAS', stock: 16, precio_normal: 5900, precio_oferta: 4370, desc: 26, semanas: 16 },
+  { nombre: 'VINO TRUMPETER RUTINI MALBEC 750ML', familia: 'VINOS', stock: 30, precio_normal: 9500, precio_oferta: 7030, desc: 26, semanas: 15 },
+];
+
+const combos = [
+  { nombre: 'Combo Picada 🍟', prod1: 'GASEOSA COCA COLA RETORNABLE 1L', precio1: 2200, prod2: 'GARRAPIÑADA KING 80G', precio2: 900, precio_combo: 2790, ahorro: 310 },
+  { nombre: 'Combo Dulce 🍫', prod1: 'GASEOSA COCA COLA RETORNABLE 1L', precio1: 2200, prod2: 'ALFAJOR TATIN SIMPLE NEGRO 33GR', precio2: 500, precio_combo: 2430, ahorro: 270 },
+  { nombre: 'Combo Birra 🍺', prod1: 'CERVEZA ISENBECK LATA 473ML', precio1: 1800, prod2: 'GARRAPIÑADA KING 80G', precio2: 900, precio_combo: 2430, ahorro: 270 },
+  { nombre: 'Combo Desayuno ☕', prod1: 'SALCHICHAS FRIAR', precio1: 2000, prod2: 'GALLETITA 9 DE ORO AGRIDULCE 200G', precio2: 1500, precio_combo: 3150, ahorro: 350 },
+  { nombre: 'Combo Deportivo 💪', prod1: 'ENERGIZANTE MONSTER ENERGY GREEN 473ML', precio1: 4000, prod2: 'GARRAPIÑADA KING 80G', precio2: 900, precio_combo: 4410, ahorro: 490 },
+  { nombre: 'Combo Merienda 🧁', prod1: 'CHOCOLATE MILKA OREO 55G', precio1: 1800, prod2: 'GALLETITA 9 DE ORO CRUJITAS QUESO 120G', precio2: 1600, precio_combo: 3060, ahorro: 340 },
+];
+
+const tres_x_dos = [
+  { nombre: 'CARAMELOS ARCOR RELLENOS', familia: 'GOLOSINAS', stock: 1936, precio: 100, margen_orig: 48.1, margen_ef: 14.9 },
+  { nombre: 'CARAMELO MASTICABLE ARCOR', familia: 'GOLOSINAS', stock: 1030, precio: 50, margen_orig: 53.0, margen_ef: 18.7 },
+  { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', familia: 'GASEOSAS', stock: 82, precio: 2800, margen_orig: 16.7, margen_ef: 8.9 },
+  { nombre: 'PAN PANIFICADOS MARTIN 500G', familia: 'PANADERIA', stock: 42, precio: 1500, margen_orig: 37.3, margen_ef: 17.9 },
+  { nombre: 'TURRON MANI ARCOR 25G', familia: 'GOLOSINAS', stock: 85, precio: 400, margen_orig: 40.2, margen_ef: 20.3 },
+  { nombre: 'HIELO NICO 2KG', familia: 'CONGELADOS', stock: 45, precio: 2600, margen_orig: 50.0, margen_ef: 25.0 },
+  { nombre: 'CHUPETIN MR POP EVOLUTION', familia: 'GOLOSINAS', stock: 120, precio: 300, margen_orig: 40.3, margen_ef: 20.5 },
+  { nombre: 'CARAMELO PALITO DE LA SELVA', familia: 'GOLOSINAS', stock: 95, precio: 100, margen_orig: 44.1, margen_ef: 21.5 },
+  { nombre: 'CHICLE BUBBALOO VARIEDAD', familia: 'GOLOSINAS', stock: 1030, precio: 100, margen_orig: 17.7, margen_ef: 8.4 },
+  { nombre: 'BARRA CEREAL MIX YOGURT FRUT 26G', familia: 'GOLOSINAS', stock: 107, precio: 1200, margen_orig: 45.7, margen_ef: 23.4 },
+  { nombre: 'SALCHICHAS CARCARAÑA', familia: 'FIAMBRES Y LACTEOS', stock: 25, precio: 1650, margen_orig: 41.8, margen_ef: 21.9 },
+  { nombre: 'ALFAJOR TATIN SIMPLE NEGRO 33GR', familia: 'ALFAJORES', stock: 45, precio: 500, margen_orig: 38.0, margen_ef: 18.7 },
+  { nombre: 'GALLETITA 9 DE ORO CRUJITAS QUESO 120G', familia: 'GALLETITAS', stock: 25, precio: 1600, margen_orig: 33.0, margen_ef: 14.5 },
+  { nombre: 'GARRAPIÑADA KING 80G', familia: 'SNACKS', stock: 30, precio: 900, margen_orig: 42.0, margen_ef: 21.3 },
+  { nombre: 'AGUA MINERAL SIN GAS 500ML', familia: 'AGUAS', stock: 60, precio: 700, margen_orig: 35.0, margen_ef: 15.7 },
+];
+
+// ── RENDERS ──────────────────────────────────────────────
+function fmt(n) { return '$' + Math.round(n).toLocaleString('es-AR'); }
+
+function renderVigentes() {
+  const grid = document.getElementById('vigentes-grid');
+  grid.innerHTML = promos_vigentes.map((p, i) => `
+    <div class="vigente-card" style="animation-delay:${i*0.05}s">
+      <div class="vigente-header">
+        <div class="vigente-nombre">${p.nombre}</div>
+        <div class="vigente-ventas">${p.cant}u vendidas</div>
+      </div>
+      <div class="vigente-body">
+        <div class="vigente-precio">${fmt(p.precio)}</div>
+        <div class="vigente-venta-total">Recaudó <strong>${fmt(p.venta)}</strong> esta semana</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderLiquidacion() {
+  const grid = document.getElementById('liquidacion-grid');
+  grid.innerHTML = liquidacion.map((p, i) => {
+    const semClass = p.semanas > 20 ? 'sem-urgente' : p.semanas > 8 ? 'sem-medio' : 'sem-ok';
+    const semTxt = p.semanas > 50 ? '🔴 Sin rotar' : p.semanas > 20 ? `🟠 ${p.semanas} sem` : `🟡 ${p.semanas} sem`;
+    return `
+    <div class="promo-card" style="animation-delay:${i*0.05}s">
+      <div class="promo-card-header">
+        <span class="promo-tipo tipo-oferta">🔥 OFERTA</span>
+        <span class="promo-unidades">Stock: ${p.stock}u</span>
+      </div>
+      <div class="promo-card-body">
+        <div class="promo-nombre">${p.nombre}</div>
+        <div class="promo-precios">
+          <span class="precio-normal">${fmt(p.precio_normal)}</span>
+          <span class="precio-oferta">${fmt(p.precio_oferta)}</span>
+          <span class="ahorro-badge">-${p.desc}%</span>
+        </div>
+        <div class="promo-meta">
+          <span class="promo-familia">${p.familia}</span>
+          <span class="promo-semanas ${semClass}">${semTxt}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCombos() {
+  const grid = document.getElementById('combos-grid');
+  grid.innerHTML = combos.map((c, i) => `
+    <div class="combo-card" style="animation-delay:${i*0.08}s">
+      <div class="combo-header">
+        <div class="combo-nombre">${c.nombre}</div>
+        <div class="combo-desc-badge">10% OFF</div>
+      </div>
+      <div class="combo-body">
+        <div class="combo-productos">
+          <div class="combo-prod">
+            <span class="combo-prod-nombre">${c.prod1}</span>
+            <span class="combo-prod-precio">${fmt(c.precio1)}</span>
+          </div>
+          <div class="combo-plus">+</div>
+          <div class="combo-prod">
+            <span class="combo-prod-nombre">${c.prod2}</span>
+            <span class="combo-prod-precio">${fmt(c.precio2)}</span>
+          </div>
+        </div>
+        <div class="combo-footer">
+          <div>
+            <div class="combo-total-label">Precio combo</div>
+            <div class="combo-precio-final">${fmt(c.precio_combo)}</div>
+            <div class="combo-ahorro">Ahorrás ${fmt(c.ahorro)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function render3x2() {
+  const container = document.getElementById('3x2-rows');
+  container.innerHTML = tres_x_dos.map((p, i) => {
+    const precio_ef = p.precio * 2 / 3;
+    const bg = i % 2 === 0 ? '#fafaf8' : '#ffffff';
+    return `
+    <div class="tabla-row" style="background:${bg}">
+      <span style="font-weight:600;font-size:13px">${p.nombre}</span>
+      <span style="text-align:center;font-weight:700;color:var(--blue)">${p.stock}</span>
+      <span style="text-align:center;font-weight:600">${fmt(p.precio)}</span>
+      <span style="text-align:center;font-weight:700;color:var(--green)">${fmt(precio_ef)}</span>
+      <span style="text-align:center;color:var(--muted)">${p.margen_orig.toFixed(1)}%</span>
+      <span style="text-align:center;font-weight:700;color:${p.margen_ef >= 15 ? 'var(--green)' : 'var(--accent2)'}">${p.margen_ef.toFixed(1)}%</span>
+    </div>`;
+  }).join('');
+}
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  
+  if (id === 'vigentes' && !document.getElementById('vigentes-grid').innerHTML) renderVigentes();
+  if (id === 'liquidacion' && !document.getElementById('liquidacion-grid').innerHTML) renderLiquidacion();
+  if (id === 'combos' && !document.getElementById('combos-grid').innerHTML) renderCombos();
+  if (id === '3x2' && !document.getElementById('3x2-rows').innerHTML) render3x2();
+}
+</script>
+</body>
+</html>
