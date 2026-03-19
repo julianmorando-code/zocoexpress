@@ -682,7 +682,7 @@ body {
         <div class="panel">
           <div class="panel-header">
             <div class="panel-title">🏆 Top Productos</div>
-            <span class="panel-badge">por cantidad</span>
+            <span class="panel-badge">por ganancia generada</span>
           </div>
           <div id="top-prods-list"></div>
         </div>
@@ -776,8 +776,8 @@ body {
         <div class="kpi-card green">
           <div class="kpi-icon">💰</div>
           <div class="kpi-label">Stock a Costo</div>
-          <div class="kpi-value">$17.0M</div>
-          <div class="kpi-sub">stock valorizado a costo</div>
+          <div class="kpi-value">$16.99M</div>
+          <div class="kpi-sub">stock a costo (16/03)</div>
         </div>
         <div class="kpi-card blue">
           <div class="kpi-icon">🏷️</div>
@@ -1106,16 +1106,16 @@ const HISTORIAL = [
     transacciones: 1536,
     ticket_promedio: 4975,
     top_productos: [
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', familia: 'GASEOSAS', cant: 82, venta: 235760 },
-      { nombre: 'CERVEZA HEINEKEN 1LT', familia: 'CERVEZAS', cant: 16, venta: 113100 },
-      { nombre: 'SANDWICH DE MIGA LAUTARO', familia: 'PANADERIA', cant: 30, venta: 107120 },
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 2.5L', familia: 'GASEOSAS', cant: 16, venta: 67640 },
-      { nombre: 'PAN PANIFICADOS MARTIN 500G', familia: 'PANADERIA', cant: 42, venta: 63000 },
-      { nombre: 'PROMO AMSTEL LATA SIXPACK', familia: 'PROMOS', cant: 22, venta: 105450 },
-      { nombre: 'PROMO BRAHMA LITRO 2X$', familia: 'PROMOS', cant: 14, venta: 99400 },
-      { nombre: 'PROMO 1890 LITRO 2X$', familia: 'PROMOS', cant: 14, venta: 92950 },
-      { nombre: 'HIELO NICO 2KG', familia: 'CONGELADOS', cant: 21, venta: 54600 },
-      { nombre: 'SALCHICHAS CARCARAÑA', familia: 'FIAMBRES Y LACTEOS', cant: 25, venta: 41250 },
+      { nombre: 'CERVEZA HEINEKEN 1LT',               familia: 'CERVEZAS',          cant: 16, venta: 113100, ganancia: 46836 },
+      { nombre: 'SANDWICH DE MIGA LAUTARO',           familia: 'PANADERIA',          cant: 30, venta: 107120, ganancia: 45020 },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L',  familia: 'GASEOSAS',           cant: 82, venta: 235760, ganancia: 44425 },
+      { nombre: 'HIELO NICO 2KG',                     familia: 'CONGELADOS',         cant: 21, venta: 55380,  ganancia: 28080 },
+      { nombre: 'PRESERVATIVO PRIME',                 familia: 'OTROS',              cant: 11, venta: 57000,  ganancia: 26737 },
+      { nombre: 'GASEOSA COCA COLA DESC 1.5L',        familia: 'GASEOSAS',           cant: 14, venta: 67620,  ganancia: 25120 },
+      { nombre: 'PROMO HEINEKEN LATA 473ML 2X$',      familia: 'PROMOS',             cant: 14, venta: 89580,  ganancia: 24828 },
+      { nombre: 'PAN PANIFICADOS MARTIN 500G',        familia: 'PANADERIA',          cant: 42, venta: 64200,  ganancia: 24720 },
+      { nombre: 'PROMO 1890 LITRO 2X$',               familia: 'PROMOS',             cant: 14, venta: 92950,  ganancia: 22950 },
+      { nombre: 'ENERGIZANTE MONSTER ENERGY 473ML',   familia: 'BEBIDAS ISOTONICAS', cant: 15, venta: 56250,  ganancia: 22931 },
     ],
     familias: [
       { nombre: 'GASEOSAS', venta: 1197420, cant: 409 },
@@ -1154,16 +1154,16 @@ const HISTORIAL = [
     transacciones: 1519,
     ticket_promedio: 4553,
     top_productos: [
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', familia: 'GASEOSAS', cant: 87, venta: 248920 },
-      { nombre: 'GASEOSA COCA COLA DESC 1.5L', familia: 'GASEOSAS', cant: 22, venta: 111720 },
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 2.5L', familia: 'GASEOSAS', cant: 24, venta: 102060 },
-      { nombre: 'PROMO BRAHMA LITRO 2X$', familia: 'PROMOS', cant: 12, venta: 85400 },
-      { nombre: 'PROMO FERNET BRANCA + COCA COLA 2.25ML', familia: 'PROMOS', cant: 4, venta: 84000 },
-      { nombre: 'SANDWICH DE MIGA LAUTARO', familia: 'PANADERIA', cant: 21, venta: 78810 },
-      { nombre: 'PRESERVATIVO PRIME', familia: 'OTROS', cant: 14, venta: 72000 },
-      { nombre: 'CIGARRILLO MARLBORO CRAFTED RED 20', familia: 'CIGARRILLOS', cant: 18, venta: 70580 },
-      { nombre: 'CERVEZA LATA MILLER 473ML', familia: 'CERVEZAS', cant: 24, venta: 70280 },
-      { nombre: 'PROMO BALBO 1.125 + SECCO POMELO 3L', familia: 'PROMOS', cant: 16, venta: 66400 },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L',  familia: 'GASEOSAS',           cant: 87, venta: 248920, ganancia: 45917 },
+      { nombre: 'GASEOSA COCA COLA DESC 1.5L',        familia: 'GASEOSAS',           cant: 22, venta: 111720, ganancia: 40220 },
+      { nombre: 'PRESERVATIVO PRIME',                 familia: 'OTROS',              cant: 14, venta: 72000,  ganancia: 33484 },
+      { nombre: 'SANDWICH DE MIGA LAUTARO',           familia: 'PANADERIA',          cant: 21, venta: 78810,  ganancia: 30510 },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 2.5L',  familia: 'GASEOSAS',           cant: 24, venta: 102060, ganancia: 28059 },
+      { nombre: 'CERVEZA LATA MILLER 473ML',          familia: 'CERVEZAS',           cant: 24, venta: 70280,  ganancia: 26288 },
+      { nombre: 'HIELO NICO 2KG',                     familia: 'CONGELADOS',         cant: 17, venta: 45760,  ganancia: 23660 },
+      { nombre: 'GASEOSA COCA COLA DESC 2.25L',       familia: 'GASEOSAS',           cant: 11, venta: 65540,  ganancia: 22915 },
+      { nombre: 'PAN PANIFICADOS MARTIN 500G',        familia: 'PANADERIA',          cant: 38, venta: 57600,  ganancia: 21880 },
+      { nombre: 'ENERGIZANTE MONSTER ENERGY 473ML',   familia: 'BEBIDAS ISOTONICAS', cant: 14, venta: 56400,  ganancia: 21680 },
     ],
     familias: [
       { nombre: 'GASEOSAS', venta: 1187930, cant: 389 },
@@ -1227,28 +1227,28 @@ const COMBOS = [
   { nombre: 'Combo Merienda 🧁', prod1: 'CHOCOLATE MILKA OREO 55G', precio1: 1800, prod2: 'GALLETITA 9 DE ORO CRUJITAS QUESO 120G', precio2: 1600, precio_combo: 3060, ahorro: 340 },
 ];
 const STOCK_VALORIZADO = [
-  { familia: 'VINOS',                   cant: 843,  costo: 2668446,  venta: 4082000 },
-  { familia: 'CERVEZAS',                cant: 1266, costo: 1835143,  venta: 3816100 },
-  { familia: 'CIGARRILLOS',             cant: 548,  costo: 1753269,  venta: 2303700 },
-  { familia: 'ALMACEN',                 cant: 1539, costo: 1648123,  venta: 2948000 },
-  { familia: 'LIMPIEZA',                cant: 817,  costo: 1158567,  venta: 1984500 },
-  { familia: 'BEBIDAS ALCOHOLICAS',     cant: 237,  costo: 1145394,  venta: 1782200 },
-  { familia: 'GOLOSINAS',               cant: 8518, costo: 1054540,  venta: 1726600 },
-  { familia: 'GALLETITAS',              cant: 1022, costo: 953349,   venta: 2127900 },
-  { familia: 'GASEOSAS',                cant: 532,  costo: 938813,   venta: 1765200 },
-  { familia: 'AGUAS SABORIZADAS Y JUGOS',cant: 532, costo: 704221,   venta: 1359500 },
-  { familia: 'CHOCOLATES',              cant: 467,  costo: 676755,   venta: 1002600 },
-  { familia: 'BEBIDAS ISOTONICAS',      cant: 222,  costo: 589708,   venta: 751100  },
-  { familia: 'FIAMBRES Y LACTEOS',      cant: 233,  costo: 462967,   venta: 576000  },
-  { familia: 'SNACKS',                  cant: 212,  costo: 350585,   venta: 545200  },
-  { familia: 'ALIMENTOS CONGELADOS',    cant: 85,   costo: 309503,   venta: 358200  },
-  { familia: 'ALFAJORES',               cant: 364,  costo: 308662,   venta: 388600  },
-  { familia: 'OTROS',                   cant: 234,  costo: 284152,   venta: 533500  },
-  { familia: 'AGUAS MINERALES',         cant: 199,  costo: 199598,   venta: 390400  },
-  { familia: 'HELADOS-HIELOS',          cant: 112,  costo: 182778,   venta: 290400  },
-  { familia: 'JUGOS EN SOBRE',          cant: 231,  costo: 100381,   venta: 115600  },
-  { familia: 'PANIFICADOS',             cant: 61,   costo: 84084,    venta: 130300  },
-  { familia: 'MEDICAMENTOS',            cant: 171,  costo: 47839,    venta: 120800  },
+  { familia: 'VINOS',                    cant: 0, costo: 2418054, venta: 3700000 },
+  { familia: 'ALMACEN',                  cant: 0, costo: 1742591, venta: 2948000 },
+  { familia: 'CIGARRILLOS',              cant: 0, costo: 1597779, venta: 2100000 },
+  { familia: 'CERVEZAS',                 cant: 0, costo: 1438842, venta: 2200000 },
+  { familia: 'GALLETITAS',               cant: 0, costo: 1274983, venta: 2127900 },
+  { familia: 'GASEOSAS',                 cant: 0, costo: 1090722, venta: 1765200 },
+  { familia: 'LIMPIEZA',                 cant: 0, costo: 1050329, venta: 1800000 },
+  { familia: 'GOLOSINAS',                cant: 0, costo: 1005819, venta: 1726600 },
+  { familia: 'BEBIDAS ALCOHOLICAS',      cant: 0, costo: 967967,  venta: 1500000 },
+  { familia: 'AGUAS SABORIZADAS Y JUGOS',cant: 0, costo: 908095,  venta: 1400000 },
+  { familia: 'CHOCOLATES',               cant: 0, costo: 756333,  venta: 1200000 },
+  { familia: 'FIAMBRES Y LACTEOS',       cant: 0, costo: 533566,  venta: 850000  },
+  { familia: 'BEBIDAS ISOTONICAS',       cant: 0, costo: 479342,  venta: 750000  },
+  { familia: 'ALIMENTOS CONGELADOS',     cant: 0, costo: 296893,  venta: 450000  },
+  { familia: 'ALFAJORES',                cant: 0, costo: 270402,  venta: 420000  },
+  { familia: 'AGUAS MINERALES',          cant: 0, costo: 263578,  venta: 420000  },
+  { familia: 'SNACKS',                   cant: 0, costo: 261711,  venta: 420000  },
+  { familia: 'OTROS',                    cant: 0, costo: 225309,  venta: 370000  },
+  { familia: 'PANIFICADOS',              cant: 0, costo: 127902,  venta: 200000  },
+  { familia: 'HELADOS-HIELOS',           cant: 0, costo: 120067,  venta: 190000  },
+  { familia: 'JUGOS EN SOBRE',           cant: 0, costo: 108060,  venta: 165000  },
+  { familia: 'MEDICAMENTOS',             cant: 0, costo: 50158,   venta: 85000   },
 ];
 
 const TRES_X_DOS = [
@@ -1305,69 +1305,80 @@ function showPTab(id, el) {
 // RENDER VENTAS
 // ══════════════════════════════════════════════════════
 function renderTopProds() {
-  const max = semanaActual.top_productos[0].cant;
+  const prods = semanaActual.top_productos;
+  const max = prods[0].ganancia || prods[0].cant;
   const ranks = ['gold','silver','bronze'];
   document.getElementById('top-prods-list').innerHTML =
-    semanaActual.top_productos.map((p, i) => `
+    prods.map((p, i) => {
+      const val = p.ganancia || p.cant;
+      const label = p.ganancia ? '$' + Math.round(p.ganancia).toLocaleString('es-AR') : p.cant + 'u';
+      const barW = (val / max * 100).toFixed(0);
+      return `
       <div class="top-prod-item">
         <div class="top-prod-rank ${ranks[i]||''}">${i+1}</div>
         <div class="top-prod-info">
           <div class="top-prod-name">${p.nombre}</div>
-          <div class="top-prod-familia">${p.familia}</div>
+          <div class="top-prod-familia">${p.familia} · ${p.cant}u vendidas</div>
         </div>
         <div class="top-prod-bar-wrap">
           <div class="top-prod-bar-bg">
-            <div class="top-prod-bar" style="width:${(p.cant/max*100).toFixed(0)}%"></div>
+            <div class="top-prod-bar" style="width:${barW}%"></div>
           </div>
         </div>
-        <div class="top-prod-val">${p.cant}u</div>
-      </div>
-    `).join('');
+        <div class="top-prod-val">${label}</div>
+      </div>`;
+    }).join('');
 }
 
 function renderTurnos() {
   const turnos = {
     manana: [
-      { nombre: 'CARAMELOS ARCOR RELLENOS',          cant: 64, venta: 6400,   familia: 'GOLOSINAS' },
-      { nombre: 'CARAMELO PALITO DE LA SELVA',       cant: 40, venta: 4020,   familia: 'GOLOSINAS' },
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', cant: 27, venta: 75600,  familia: 'GASEOSAS' },
-      { nombre: 'CHICLE BUBBALOO VARIEDAD',          cant: 15, venta: 1500,   familia: 'GOLOSINAS' },
-      { nombre: 'HUEVOS 1U',                         cant: 14, venta: 4200,   familia: 'FIAMBRES Y LACTEOS' },
+      { nombre: 'SANDWICH DE MIGA LAUTARO',           cant: 10, venta: 37800,  familia: 'PANADERIA',          ganancia: 14000 },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L',  cant: 27, venta: 75600,  familia: 'GASEOSAS',           ganancia: 12599 },
+      { nombre: 'ENSALADA DE FRUTAS',                 cant:  8, venta: 28000,  familia: 'FIAMBRES Y LACTEOS', ganancia: 12000 },
+      { nombre: 'GASEOSA COCA COLA DESC 1.5L',        cant:  5, venta: 22400,  familia: 'GASEOSAS',           ganancia:  8250 },
+      { nombre: 'ENERGIZANTE MONSTER ENERGY 473ML',   cant:  5, venta: 20000,  familia: 'BEBIDAS ISOTONICAS', ganancia:  7600 },
     ],
     tarde: [
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', cant: 41, venta: 114800, familia: 'GASEOSAS' },
-      { nombre: 'PAN PANIFICADOS MARTIN 500G',       cant: 22, venta: 33000,  familia: 'PANADERIA' },
-      { nombre: 'CARAMELO MASTICABLE ARCOR',         cant: 20, venta: 1000,   familia: 'GOLOSINAS' },
-      { nombre: 'TURRON MANI ARCOR 25G',             cant: 15, venta: 6000,   familia: 'GOLOSINAS' },
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 2.5L', cant: 15, venta: 63000,  familia: 'GASEOSAS' },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L',  cant: 41, venta: 114800, familia: 'GASEOSAS',           ganancia: 19132 },
+      { nombre: 'PRESERVATIVO PRIME',                 cant:  8, venta: 45600,  familia: 'OTROS',              ganancia: 17991 },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 2.5L',  cant: 15, venta: 63000,  familia: 'GASEOSAS',           ganancia: 16749 },
+      { nombre: 'GASEOSA COCA COLA DESC 1.5L',        cant:  9, venta: 40320,  familia: 'GASEOSAS',           ganancia: 14850 },
+      { nombre: 'PAPAS LAYS CLASICA 134GR',           cant:  5, venta: 19000,  familia: 'SNACKS',             ganancia: 13857 },
     ],
     noche: [
-      { nombre: 'CARAMELO PALITO DE LA SELVA',       cant: 20, venta: 2200,   familia: 'GOLOSINAS' },
-      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L', cant: 19, venta: 58520,  familia: 'GASEOSAS' },
-      { nombre: 'CERVEZA ISENBECK LATA 473ML',       cant: 13, venta: 25740,  familia: 'CERVEZAS' },
-      { nombre: 'CARAMELO MIEL ARCOR',               cant: 12, venta: 1200,   familia: 'GOLOSINAS' },
-      { nombre: 'CERVEZA LATA MILLER 473ML',         cant: 11, venta: 33880,  familia: 'CERVEZAS' },
+      { nombre: 'GASEOSA COCA COLA DESC 1.5L',        cant:  8, venta: 35840,  familia: 'GASEOSAS',           ganancia: 17120 },
+      { nombre: 'GASEOSA COCA COLA RETORNABLE 1.5L',  cant: 19, venta: 58520,  familia: 'GASEOSAS',           ganancia: 14186 },
+      { nombre: 'ENERGIZANTE SPEED 473ML',            cant:  8, venta: 32000,  familia: 'BEBIDAS ISOTONICAS', ganancia: 13895 },
+      { nombre: 'CERVEZA LATA MILLER 473ML',          cant: 11, venta: 33880,  familia: 'CERVEZAS',           ganancia: 13717 },
+      { nombre: 'CERVEZA HEINEKEN 1LT',               cant:  4, venta: 28480,  familia: 'CERVEZAS',           ganancia: 12034 },
     ],
   };
 
   ['manana','tarde','noche'].forEach(t => {
     const max = turnos[t][0].cant;
     document.getElementById('turno-' + t).innerHTML =
-      turnos[t].map((p, i) => `
+      turnos[t].map((p, i) => {
+        const ganancias = turnos[t].map(x => x.ganancia || x.cant);
+        const maxVal = Math.max(...ganancias);
+        const val = p.ganancia || p.cant;
+        const barW = (val/maxVal*100).toFixed(0);
+        const label = p.ganancia ? '$'+Math.round(p.ganancia).toLocaleString('es-AR') : p.cant+'u';
+        return `
         <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--border)">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);width:22px;text-align:center">${i+1}</div>
           <div style="flex:1">
             <div style="font-size:12px;font-weight:600;line-height:1.3">${p.nombre}</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px">${p.familia}</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:1px">${p.familia} · ${p.cant}u</div>
             <div style="background:var(--border);border-radius:3px;height:4px;margin-top:5px;overflow:hidden">
-              <div style="background:var(--accent);height:100%;width:${(p.cant/max*100).toFixed(0)}%;border-radius:3px"></div>
+              <div style="background:var(--accent);height:100%;width:${barW}%;border-radius:3px"></div>
             </div>
           </div>
           <div style="text-align:right">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--accent)">${p.cant}u</div>
-            <div style="font-size:10px;color:var(--muted)">${fmt(p.venta)}</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--accent)">${label}</div>
+            <div style="font-size:10px;color:var(--muted)">ganancia</div>
           </div>
-        </div>`).join('');
+        </div>`;}).join('');
   });
 }
 
